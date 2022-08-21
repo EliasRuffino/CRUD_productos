@@ -28,7 +28,7 @@ echo "</pre>";
 </head>
   <body>
     <h1>CRUD DE PRODUCTOS</h1>
-    <a href="./crear.php"><button type="button" class="btn btn-outline-success " btn-lg>Crear Producto</button>
+    <a href="./crear.php"><button type="button" class="btn btn-outline-success " btn-lg>Crear Producto</button> </a>
     <table class="table">
   <thead>
     <tr>

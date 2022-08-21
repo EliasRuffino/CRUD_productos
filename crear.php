@@ -1,18 +1,20 @@
 <?php
 
-$connectionString = "mysql:host=localhost;port=3306;dbname=crud_productos";
-$user = "root";
-$pass = "";
-$pdo = new PDO ($connectionString,$user,$pass);
-$pdo ->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$PDO = new PDO ("mysql:host=localhost;port=3306;dbname=crud_productos","root","");
+$PDO ->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$consulta = $pdo -> prepare ("SELECT * FROM productos ORDER BY fecha_creacion");
-$consulta->execute();
-$productos = $consulta->fetchAll(PDO::FETCH_ASSOC);
 /*echo "<pre>";
-var_dump($productos);
+var_dump($_POST);
 echo "</pre>";
 */
+
+$nombre = $_POST['nombre'];
+$imagen = $_POST['imagen'];
+$precio = $_POST['precio'];
+$descripcion = $_POST['descripcion']; 
+
+$PDO->exec("INSERT INTO productos (nombre, imagen, precio, descripcion)
+            VALUE ('$nombre', '$imagen', '$precio', '$descripcion')");
 
 ?>
 
@@ -28,9 +30,10 @@ echo "</pre>";
 </head>
   <body>
     <h1>CREAR PRODUCTO</h1>
-    <a href="index.php"><button type="button" class="btn btn-outline-success " btn-lg>Volver</button>
+    <a href="index.php"><button type="button" class="btn btn-outline-success " btn-lg>Volver</button></a>
     
-    <form>
+    <form method="post">
+
   <div class="mb-3">
     <label>Imagen</label>
     <input type="file" class="form-control" id="imagen" name = "imagen">
